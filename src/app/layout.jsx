@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     >
       <body >
 
-        <header className="py-2 md:11/12 mx-auto">
+        <header className="py-4 md:11/12 mx-auto">
            <Navbar></Navbar>
         </header>
 
