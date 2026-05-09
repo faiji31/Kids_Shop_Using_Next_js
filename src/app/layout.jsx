@@ -4,6 +4,7 @@ import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
 
 
+
 const poppins = Poppins({
   weight:["100","200","300","400","500","600","800"]
 })
@@ -21,11 +22,11 @@ export default function RootLayout({ children }) {
     >
       <body >
 
-        <header className="py-4 md:11/12 mx-auto">
+        <header className="py-4 md:w-11/12 mx-auto">
            <Navbar></Navbar>
         </header>
 
-        <main  className="py-2 md:11/12 mx-auto">
+        <main  className="py-2 md:w-11/12 mx-auto">
                {children}
         </main>
       
