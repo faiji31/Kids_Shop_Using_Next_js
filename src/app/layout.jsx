@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${poppins.className} antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body >
 
         <header className="py-2 md:11/12 mx-auto">
            <Navbar></Navbar>
