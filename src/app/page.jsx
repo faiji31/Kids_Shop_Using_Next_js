@@ -1,10 +1,16 @@
 import Banner from "@/components/home/Banner";
+import Products from "@/components/home/Products";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <section>
+   <div className="space-x-4">
+     <section>
       <Banner></Banner>
     </section>
+    <section>
+      <Products></Products>
+    </section>
+   </div>
   );
 }
