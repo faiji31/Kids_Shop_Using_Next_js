@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Star, ShoppingCart, Eye } from "lucide-react";
 
 const ProductCard = ({ product = {}, index = 0 }) => {
-  // Prevent crash if product is undefined
+  // Prevent rendering if product is missing
   if (!product || Object.keys(product).length === 0) {
     return null;
   }
@@ -14,24 +14,29 @@ const ProductCard = ({ product = {}, index = 0 }) => {
     bangla = "পণ্যের নাম",
     image = "/placeholder.png",
     price = 0,
-    discount = product.percentage || 0, // supports both discount and percentage
     ratings = 0,
     reviews = 0,
     sold = 0,
   } = product;
 
+  // Support both discount and percentage fields
+  const discount = product.discount ?? product.percentage ?? 0;
+
+  // Calculate discounted price
   const finalPrice = Math.round(price - (price * discount) / 100);
 
   return (
     <div className="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-      {/* Image */}
+      {/* Image Section */}
       <div className="relative bg-gray-50 p-4">
+        {/* Discount Badge */}
         {discount > 0 && (
           <span className="absolute top-4 left-4 z-10 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
             -{discount}%
           </span>
         )}
 
+        {/* Product Image */}
         <Link href={`/products/${index}`}>
           <div className="relative h-64 w-full overflow-hidden rounded-2xl">
             <Image
@@ -47,15 +52,17 @@ const ProductCard = ({ product = {}, index = 0 }) => {
 
       {/* Content */}
       <div className="p-5">
+        {/* Title */}
         <Link href={`/products/${index}`}>
           <h3 className="text-lg font-semibold text-gray-800 line-clamp-1 group-hover:text-primary transition">
             {title}
           </h3>
         </Link>
 
+        {/* Bangla Title */}
         <p className="text-sm text-gray-500 mt-1 line-clamp-1">{bangla}</p>
 
-        {/* Rating */}
+        {/* Ratings */}
         <div className="flex items-center gap-2 mt-3 flex-wrap">
           <div className="flex items-center text-yellow-500">
             <Star size={16} fill="currentColor" />
@@ -81,8 +88,9 @@ const ProductCard = ({ product = {}, index = 0 }) => {
           )}
         </div>
 
-        {/* Buttons */}
+        {/* Action Buttons */}
         <div className="mt-5 grid grid-cols-2 gap-3">
+          {/* View Details Button */}
           <Link
             href={`/products/${index}`}
             className="border border-primary text-primary py-3 rounded-xl font-medium hover:bg-primary hover:text-white transition flex items-center justify-center gap-2"
@@ -91,6 +99,7 @@ const ProductCard = ({ product = {}, index = 0 }) => {
             Details
           </Link>
 
+          {/* Add to Cart Button */}
           <button className="bg-primary text-white py-3 rounded-xl font-medium hover:bg-primary/90 transition flex items-center justify-center gap-2">
             <ShoppingCart size={18} />
             Cart
