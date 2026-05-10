@@ -31,12 +31,13 @@ const ProductCard = ({ product, index }) => {
         {/* Product Image */}
         <Link href={`/products/${index}`}>
           <div className="relative h-64 w-full overflow-hidden rounded-2xl">
-            <img
+            <Image
               src={image}
               alt={title}
               fill
               className="object-contain group-hover:scale-105 transition-transform duration-500"
               sizes="(max-width: 768px) 100vw, 33vw"
+              
             />
           </div>
         </Link>
