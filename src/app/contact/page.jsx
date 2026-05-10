@@ -1,4 +1,13 @@
-export default function ContactPage() {
+
+export const metadata ={
+    title: "Contact Us",
+    description:"Get in touch with our team for any inquiries or support."
+}
+export default function ContactPage() 
+
+
+
+{
   return (
     <section className="max-w-4xl mx-auto px-4 py-16">
       <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-10">

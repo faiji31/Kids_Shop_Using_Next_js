@@ -1,3 +1,8 @@
+export const metadata ={
+    title: "Blog - Stories, guides and toy tips for Parents",
+    description:"Browse your regular Products on your kids daily needs"
+}
+
 const blogPosts = [
   {
     title: "Smart Learning Toys for Early Childhood",
