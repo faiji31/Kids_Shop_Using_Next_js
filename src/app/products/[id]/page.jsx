@@ -9,9 +9,10 @@ import {
 } from "lucide-react";
 import products from "@/data/toys.json";
 
+
 // Dynamic metadata
 export async function generateMetadata({ params }) {
-  const { id } = await params;
+  const { id } = params;
   const productId = Number(id);
   const product = products[productId];
 
