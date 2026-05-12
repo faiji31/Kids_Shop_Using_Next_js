@@ -4,6 +4,7 @@ import { SocialButtons } from "./SocialButton";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Swal from "sweetalert2";
+import { postUser } from "@/actions/server/auth";
 
 export const RegisterForm = () => {
   const params = useSearchParams();
@@ -21,14 +22,27 @@ export const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!form.name || !form.email || !form.password) {
       Swal.fire("Error", "Please fill all fields before registering.", "error");
       return;
     }
 
-    console.log("Register submitted", form);
-    Swal.fire("Success", "Registered successfully.", "success");
-    router.push(callbackUrl);
+    try {
+      const result = await postUser(form);
+      if (result && result.acknowledged) {
+        console.log("Register submitted", form);
+        Swal.fire("Success", "Registered successfully.", "success");
+        router.push(callbackUrl);
+      } else if (result && result.error) {
+        Swal.fire("Error", result.error, "error");
+      } else {
+        Swal.fire("Error", "Registration failed. Please try again.", "error");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      Swal.fire("Error", "Something went wrong. Please try again.", "error");
+    }
   };
 
   return (
